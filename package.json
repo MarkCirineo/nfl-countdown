@@ -1,0 +1,14 @@
+{
+    "name": "nfl-countdown",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "scripts": {
+        "format": "prettier . --write"
+    },
+    "author": "Mark Cirineo",
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "^3.5.3"
+    }
+}
