@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-import config from "@/config";
-import logger from "@/logger";
-import router from "@/routes";
+import config from "@config";
+import logger from "@logger";
+import router from "@routes";
 
 const app = express();
 const PORT = config.PORT || 3000;
