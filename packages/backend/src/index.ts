@@ -6,6 +6,7 @@ import "@db";
 import config from "@config";
 import logger from "@logger";
 import router from "@routes";
+import { errorHandler } from "@utils/error";
 
 const app = express();
 const PORT = config.PORT || 3000;
@@ -20,6 +21,8 @@ app.use(
 );
 
 app.use(router);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
 	logger.info(`Server is running on port ${PORT}`);

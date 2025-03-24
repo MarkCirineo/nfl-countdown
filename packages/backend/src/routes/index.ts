@@ -1,9 +1,10 @@
 import { Router } from "express";
+import { HttpError } from "@utils/error";
 
 const router = Router();
 
-router.get("*", (req, res) => {
-	res.status(404).send({ message: "Not Found" });
+router.get("*", (req, res, next) => {
+	next(new HttpError(`Route ${req.method}:${req.path} not found`, 404));
 });
 
 export default router;
