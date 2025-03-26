@@ -37,7 +37,6 @@ router.post("/register", async (req: Request, res: Response, next: NextFunction)
 			return res.status(500).send({ message: "Failed to create user" });
 		}
 
-		// Return the user
 		return res.status(201).send({ message: "User created" });
 	} catch (error) {
 		next(new HttpError("Failed to create user", 500));
