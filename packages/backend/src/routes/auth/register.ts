@@ -23,7 +23,11 @@ router.post("/register", async (req: Request, res: Response, next: NextFunction)
 			return next(new HttpError("Email is already taken", 400));
 		}
 
+		// Password validation
+		if (password.length <= 8) {
+			return next(new HttpError("Password must be at least 8 characters long", 400));
 		}
+
 		// Hash the password
 		const hashedPassword = await bcrypt.hash(password, 10);
 
