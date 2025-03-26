@@ -32,7 +32,7 @@ router.post("/register", async (req: Request, res: Response, next: NextFunction)
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		// Save the user to the database
-		const added = await db
+		await db
 			.insertInto("users")
 			.values({
 				username,
@@ -40,11 +40,7 @@ router.post("/register", async (req: Request, res: Response, next: NextFunction)
 				password: hashedPassword
 			})
 			.returningAll()
-			.executeTakeFirst();
-
-		if (!added) {
-			return next(new HttpError("Failed to create user", 500));
-		}
+			.executeTakeFirstOrThrow();
 
 		return res.status(201).send({ message: "User created" });
 	} catch (error) {
