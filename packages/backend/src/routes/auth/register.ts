@@ -39,7 +39,7 @@ router.post("/register", async (req: Request, res: Response, next: NextFunction)
 			.executeTakeFirst();
 
 		if (!added) {
-			return res.status(500).send({ message: "Failed to create user" });
+			return next(new HttpError("Failed to create user", 500));
 		}
 
 		return res.status(201).send({ message: "User created" });
