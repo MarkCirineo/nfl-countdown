@@ -10,14 +10,19 @@ router.post("/register", async (req: Request, res: Response, next: NextFunction)
 
 	try {
 		// Check if the username is already taken
-		// Check if the email is already taken
-		const userExists = await db
-			.selectFrom("users")
-			.where((eb) => eb.or([eb("username", "=", username), eb("email", "=", email)]))
-			.execute();
+		const userExists = await db.selectFrom("users").where("username", "=", username).execute();
 
 		if (userExists.length > 0) {
-			return res.status(400).send({ message: "Username is already taken" });
+			return next(new HttpError("Username is already taken", 400));
+		}
+
+		// Check if the email is already taken
+		const emailExists = await db.selectFrom("users").where("email", "=", email).execute();
+
+		if (emailExists.length > 0) {
+			return next(new HttpError("Email is already taken", 400));
+		}
+
 		}
 		// Hash the password
 		const hashedPassword = await bcrypt.hash(password, 10);
