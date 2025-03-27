@@ -37,6 +37,7 @@ router.post("/register", async (req: Request, res: Response, next: NextFunction)
 			.values({
 				username,
 				email,
+				role: "user",
 				password: hashedPassword
 			})
 			.returningAll()

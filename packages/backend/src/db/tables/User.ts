@@ -5,6 +5,7 @@ export default interface UserTable {
 	username: string;
 	email: string;
 	password: string;
+	role: "admin" | "user";
 	createdAt: Generated<Date>;
 	updatedAt: Generated<Date>;
 }
@@ -14,6 +15,7 @@ export type User = {
 	username: string;
 	email: string;
 	password: string;
+	role: "admin" | "user";
 	createdAt: Date;
 	updatedAt: Date;
 };
