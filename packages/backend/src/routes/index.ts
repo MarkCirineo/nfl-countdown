@@ -4,7 +4,7 @@ import auth from "./auth";
 
 const router = Router();
 
-router.use("/auth", auth);
+router.use("/api/auth", auth);
 
 router.get("*", (req, res, next) => {
 	next(new HttpError(`Route ${req.method}:${req.path} not found`, 404));
