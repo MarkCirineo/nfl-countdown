@@ -6,7 +6,8 @@ import { HttpError } from "@utils/error";
 const router = Router();
 
 router.post("/", async (req: Request, res: Response, next: NextFunction) => {
-	const { username, password } = req.body;
+	const { username: givenUsername, password } = req.body;
+	const username = givenUsername.toLowerCase();
 
 	try {
 		// Get user from db
