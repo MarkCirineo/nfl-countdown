@@ -8,16 +8,16 @@
 
 <ModeWatcher />
 
-<nav class="nav"><LightSwitch /></nav>
+<div class="light-switch">
+	<LightSwitch />
+</div>
 
 {@render children()}
 
 <style>
-	.nav {
-		width: 100%;
-		padding: 1rem;
-		display: flex;
-		justify-content: end;
-		align-items: center;
+	.light-switch {
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
 	}
 </style>
