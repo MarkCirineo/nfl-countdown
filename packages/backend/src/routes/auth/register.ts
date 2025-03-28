@@ -6,11 +6,11 @@ import { HttpError } from "@utils/error";
 const router = Router();
 
 router.post("/", async (req: Request, res: Response, next: NextFunction) => {
-	const { username: givenUsername, email: givenEmail, password } = req.body;
-	const username = givenUsername.toLowerCase();
-	const email = givenEmail.toLowerCase();
-
 	try {
+		const { username: givenUsername, email: givenEmail, password } = req.body;
+		const username = givenUsername.toLowerCase();
+		const email = givenEmail.toLowerCase();
+
 		// Check if the username is already taken
 		const userExists = await db.selectFrom("users").where("username", "=", username).execute();
 
