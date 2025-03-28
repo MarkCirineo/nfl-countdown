@@ -5,7 +5,7 @@ import { HttpError } from "@utils/error";
 
 const router = Router();
 
-router.post("/register", async (req: Request, res: Response, next: NextFunction) => {
+router.post("/", async (req: Request, res: Response, next: NextFunction) => {
 	const { username, email, password } = req.body;
 
 	try {
