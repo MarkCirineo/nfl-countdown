@@ -1,6 +1,22 @@
-export const user = $state<{ username: string; role: string }>({ username: "", role: "" });
+type AuthState = {
+	user: {
+		username: string;
+		role: string;
+	};
+	loading: boolean;
+};
+
+export const authState = $state<AuthState>({
+	user: {
+		username: "",
+		role: ""
+	},
+	loading: true
+});
 
 export const getUser = async () => {
+	authState.loading = true;
+
 	const res = await fetch("http://localhost:3000/api/auth/me", {
 		method: "GET",
 		credentials: "include",
@@ -11,15 +27,17 @@ export const getUser = async () => {
 
 	if (res.ok) {
 		const data = await res.json();
-		user.role = data.role;
-		user.username = data.username;
+		authState.user.role = data.role;
+		authState.user.username = data.username;
 	} else {
-		user.role = "";
-		user.username = "";
+		authState.user.role = "";
+		authState.user.username = "";
 	}
+
+	authState.loading = false;
 };
 
 export const setUser = ({ username, role }: { username: string; role: string }) => {
-	user.username = username;
-	user.role = role;
+	authState.user.username = username;
+	authState.user.role = role;
 };
