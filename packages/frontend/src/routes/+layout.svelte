@@ -3,7 +3,14 @@
 	import { ModeWatcher } from "mode-watcher";
 	import LightSwitch from "$lib/components/ui/light-switch/light-switch.svelte";
 
+	import { getUser } from "$lib/stores/auth.svelte";
+	import { onMount } from "svelte";
+
 	let { children } = $props();
+
+	onMount(() => {
+		getUser();
+	});
 </script>
 
 <ModeWatcher />
