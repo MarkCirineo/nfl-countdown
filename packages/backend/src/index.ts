@@ -14,11 +14,16 @@ const PORT = config.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-	cors({
-		credentials: true
-	})
-);
+
+const corsOptions: cors.CorsOptions = {
+	credentials: true
+};
+
+if (config.origin) {
+	corsOptions.origin = config.origin;
+}
+
+app.use(cors(corsOptions));
 app.use(
 	morgan(
 		`[:date[iso]] - :method :url :status :response-time ms - :res[content-length] ":user-agent"`
