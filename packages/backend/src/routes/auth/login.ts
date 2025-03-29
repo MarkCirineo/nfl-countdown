@@ -25,7 +25,10 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
 		// Create session
 		req.session.user = user;
 
-		return res.status(200).send({ message: "Logged in" });
+		// Return user
+		return res
+			.status(200)
+			.send({ message: "Logged in", data: { username: user.username, role: user.role } });
 	} catch (error) {
 		next(new HttpError("Failed to login", 500));
 	}
