@@ -3,8 +3,6 @@
 	import LoginForm from "$lib/components/login-form.svelte";
 
 	import { authState } from "$lib/stores/auth.svelte";
-
-	$inspect(authState);
 </script>
 
 <div class="flex h-screen w-full items-center justify-center px-4">
