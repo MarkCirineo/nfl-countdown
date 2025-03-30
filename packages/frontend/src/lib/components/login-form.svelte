@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Eye from "@lucide/svelte/icons/eye";
+	import EyeOff from "@lucide/svelte/icons/eye-off";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Card from "$lib/components/ui/card/index.js";
 	import { Input } from "$lib/components/ui/input/index.js";
@@ -7,6 +9,7 @@
 
 	let username = "";
 	let password = "";
+	let showPassword = false;
 
 	const handleLogin = async () => {
 		const response = await fetch("http://localhost:3000/api/auth/login", {
@@ -37,6 +40,10 @@
 		username = "";
 		password = "";
 	};
+
+	const togglePasswordVisibility = () => {
+		showPassword = !showPassword;
+	};
 </script>
 
 <Card.Root class="mx-auto w-full max-w-sm">
@@ -50,10 +57,27 @@
 				<Input id="username" type="text" bind:value={username} required />
 			</div>
 			<div class="grid gap-2">
-				<div class="flex items-center">
-					<Label for="password">Password</Label>
+				<Label for="password">Password</Label>
+				<div class="relative">
+					<Input
+						id="password"
+						type={showPassword ? "text" : "password"}
+						bind:value={password}
+						required
+						class="pr-10"
+					/>
+					<button
+						type="button"
+						class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+						onclick={togglePasswordVisibility}
+					>
+						{#if showPassword}
+							<EyeOff class="h-5 w-5" />
+						{:else}
+							<Eye class="h-5 w-5" />
+						{/if}
+					</button>
 				</div>
-				<Input id="password" type="password" bind:value={password} required />
 			</div>
 			<Button type="submit" class="mt-2 w-full" onclick={handleLogin}>Login</Button>
 		</div>
