@@ -37,7 +37,6 @@
 		</p>
 	</div>
 	<div class="flex items-center space-x-4">
-		<!-- Live Countdown -->
 		{#if countdown.timeLeft}
 			<div class="text-center">
 				<p class="text-md font-bold text-blue-500">
