@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { onDestroy } from "svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import type { CountdownData } from "$lib/types/countdown";
 	import { calculateTimeLeft } from "$lib/utils";
-	import { onDestroy } from "svelte";
 
 	let { countdown }: { countdown: CountdownData } = $props();
 
