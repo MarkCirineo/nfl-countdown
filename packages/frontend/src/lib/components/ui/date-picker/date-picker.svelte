@@ -10,7 +10,7 @@
 		dateStyle: "long"
 	});
 
-	let value: DateValue | undefined = undefined;
+	export let value: DateValue | undefined = undefined;
 	export let passedClass: string;
 </script>
 
