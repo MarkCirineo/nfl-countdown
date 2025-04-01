@@ -3,6 +3,7 @@
 	import Button from "$lib/components/ui/button/button.svelte";
 	import type { CountdownData } from "$lib/types/countdown";
 	import { calculateTimeLeft } from "$lib/utils";
+	import { fetchCountdowns } from "$lib/stores/countdown.svelte";
 
 	let { countdown }: { countdown: CountdownData } = $props();
 
@@ -10,8 +11,23 @@
 		// Placeholder for editing a countdown
 	};
 
-	const deleteCountdown = (id: number) => {
-		// Placeholder for deleting a countdown
+	const deleteCountdown = async (id: number) => {
+		const response = await fetch("http://localhost:3000/api/countdown/delete", {
+			method: "DELETE",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({ id })
+		});
+
+		if (response.ok) {
+			// TODO: toast
+			fetchCountdowns();
+		} else {
+			// TODO: toast
+			console.error("Failed to delete countdown");
+		}
 	};
 
 	// Update countdowns every second
