@@ -11,7 +11,7 @@ export const countdownState = $state<CountdownState>({
 	countdownData: []
 });
 
-export const fetchCountdowns = async (): Promise<Countdown[]> => {
+export const getCountdowns = async (): Promise<Countdown[]> => {
 	const response = await fetch("http://localhost:3000/api/countdown/list", {
 		method: "GET",
 		credentials: "include",

@@ -11,7 +11,7 @@
 
 	import { authState } from "$lib/stores/auth.svelte";
 	import { cn } from "$lib/utils";
-	import { fetchCountdowns } from "$lib/stores/countdown.svelte";
+	import { getCountdowns } from "$lib/stores/countdown.svelte";
 
 	let isCreating = false;
 
@@ -52,7 +52,7 @@
 			// TODO: toast created countdown
 			isCreating = false;
 			resetValues();
-			fetchCountdowns();
+			getCountdowns();
 		} else {
 			// TODO: handle error
 		}

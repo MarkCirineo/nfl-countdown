@@ -2,10 +2,10 @@
 	import { onMount } from "svelte";
 
 	import Countdown from "./countdown.svelte";
-	import { countdownState, fetchCountdowns } from "$lib/stores/countdown.svelte";
+	import { countdownState, getCountdowns } from "$lib/stores/countdown.svelte";
 
 	onMount(async () => {
-		await fetchCountdowns();
+		await getCountdowns();
 	});
 </script>
 

@@ -3,7 +3,7 @@
 	import Button from "$lib/components/ui/button/button.svelte";
 	import type { CountdownData } from "$lib/types/countdown";
 	import { calculateTimeLeft } from "$lib/utils";
-	import { fetchCountdowns } from "$lib/stores/countdown.svelte";
+	import { getCountdowns } from "$lib/stores/countdown.svelte";
 
 	let { countdown }: { countdown: CountdownData } = $props();
 
@@ -23,7 +23,7 @@
 
 		if (response.ok) {
 			// TODO: toast
-			fetchCountdowns();
+			getCountdowns();
 		} else {
 			// TODO: toast
 			console.error("Failed to delete countdown");
