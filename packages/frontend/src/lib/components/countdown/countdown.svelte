@@ -20,7 +20,8 @@
 <li
 	class={cn(
 		"flex min-h-[82px] items-center justify-between rounded border p-4 shadow",
-		countdown.timeLeft.isPast && "bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400"
+		countdown.timeLeft.isPast &&
+			"bg-gray-100 text-gray-500 opacity-85 dark:bg-gray-900 dark:text-gray-600"
 	)}
 >
 	<div class="flex-1">
