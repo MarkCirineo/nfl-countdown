@@ -14,5 +14,6 @@ export type CountdownData = Countdown & {
 		hours: number;
 		minutes: number;
 		seconds: number;
+		isPast: boolean;
 	};
 };

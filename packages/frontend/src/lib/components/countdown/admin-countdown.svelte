@@ -2,7 +2,7 @@
 	import { onDestroy } from "svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import type { CountdownData } from "$lib/types/countdown";
-	import { calculateTimeLeft } from "$lib/utils";
+	import { calculateTimeLeft, cn } from "$lib/utils";
 	import { getCountdowns } from "$lib/stores/countdown.svelte";
 
 	let { countdown }: { countdown: CountdownData } = $props();
@@ -42,23 +42,32 @@
 	});
 </script>
 
-<li class="flex items-center justify-between rounded border p-4 shadow">
+<li
+	class={cn(
+		"flex items-center justify-between rounded border p-4 shadow",
+		countdown.timeLeft.isPast && "bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400"
+	)}
+>
 	<div class="flex-1">
 		<h2 class="text-lg font-bold">{countdown.title}</h2>
 		<p class="text-sm text-gray-500">{countdown.description}</p>
 		<p class="text-sm text-gray-500">Date: {countdown.date}</p>
-		<p class="text-sm text-gray-500">
-			Created By: {countdown.created_by}
-		</p>
+		<p class="text-sm text-gray-500">Created By: {countdown.created_by}</p>
 	</div>
 	<div class="flex items-center space-x-4">
 		{#if countdown.timeLeft}
 			<div class="text-center">
-				<p class="text-md font-bold text-blue-500">
-					{countdown.timeLeft.days}d {countdown.timeLeft.hours}h {countdown.timeLeft
-						.minutes}m
-					{countdown.timeLeft.seconds}s
-				</p>
+				{#if countdown.timeLeft.isPast}
+					<p class="text-md font-bold">
+						{countdown.timeLeft.days}d {countdown.timeLeft.hours}h {countdown.timeLeft
+							.minutes}m {countdown.timeLeft.seconds}s ago
+					</p>
+				{:else}
+					<p class="text-md font-bold text-blue-500">
+						{countdown.timeLeft.days}d {countdown.timeLeft.hours}h {countdown.timeLeft
+							.minutes}m {countdown.timeLeft.seconds}s
+					</p>
+				{/if}
 			</div>
 		{/if}
 		<div class="flex space-x-2">
