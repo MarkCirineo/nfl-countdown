@@ -11,6 +11,27 @@ export const countdownState = $state<CountdownState>({
 	countdownData: []
 });
 
+export const sortCountdowns = () => {
+	countdownState.countdownData = countdownState.countdownData.sort((a, b) => {
+		const dateA = new Date(a.date).getTime();
+		const dateB = new Date(b.date).getTime();
+		const now = new Date().getTime();
+
+		const isPastA = dateA < now;
+		const isPastB = dateB < now;
+
+		// Future dates come first, sorted in ascending order
+		if (!isPastA && isPastB) return -1;
+		if (isPastA && !isPastB) return 1;
+
+		// If both are in the future, sort ascending
+		if (!isPastA && !isPastB) return dateA - dateB;
+
+		// If both are in the past, sort descending
+		return dateB - dateA;
+	});
+};
+
 export const getCountdowns = async (): Promise<Countdown[]> => {
 	const response = await fetch("http://localhost:3000/api/countdown/list", {
 		method: "GET",
@@ -29,6 +50,9 @@ export const getCountdowns = async (): Promise<Countdown[]> => {
 		...countdown,
 		timeLeft: calculateTimeLeft(countdown.date)
 	}));
+
+	// For now just always sort the countdowns when fetching them
+	sortCountdowns();
 
 	return countdownState.countdowns;
 };
