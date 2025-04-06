@@ -82,65 +82,65 @@
 	<div class="overflow flex h-screen w-full flex-col items-center justify-center">
 		<LoginForm />
 	</div>
+{:else if authState.user.role !== "admin"}
+	<div class="overflow flex h-screen w-full flex-col items-center justify-center">
+		<div class="w-full max-w-4xl py-12">
+			<div class="text-center">
+				<Lock class="mx-auto mb-4 h-14 w-14 text-gray-400" />
+				<h2 class="text-xl font-bold">You do not have permission to access this page.</h2>
+			</div>
+		</div>
+	</div>
 {:else}
 	<div class="overflow flex h-screen w-full flex-col items-center justify-start">
 		<div class="w-full max-w-4xl py-12">
-			{#if authState.user.role !== "admin"}
-				<div class="text-center">
-					<Lock class="mx-auto mb-4 h-14 w-14 text-gray-400" />
-					<h2 class="text-xl font-bold">
-						You do not have permission to access this page.
-					</h2>
+			<div class="top-0 z-10 text-center">
+				<h1 class="mb-6 text-2xl font-bold">Welcome, {authState.user.username}!</h1>
+				<div class="mb-10">
+					<Button onclick={startCreatingCountdown}>Create New Countdown</Button>
 				</div>
-			{:else}
-				<div class="top-0 z-10 text-center">
-					<h1 class="mb-6 text-2xl font-bold">Welcome, {authState.user.username}!</h1>
-					<div class="mb-10">
-						<Button onclick={startCreatingCountdown}>Create New Countdown</Button>
-					</div>
-				</div>
-				<div class="overflow-y-auto">
-					{#if isCreating}
-						<div class="mb-4 rounded border p-4 shadow">
-							<h2 class="text-lg font-bold">New Countdown</h2>
-							<div class="mt-2 space-y-2">
-								<Input
-									type="text"
-									placeholder="Title"
-									class="w-full rounded border px-2 py-1"
-									bind:value={title}
+			</div>
+			<div class="overflow-y-auto">
+				{#if isCreating}
+					<div class="mb-4 rounded border p-4 shadow">
+						<h2 class="text-lg font-bold">New Countdown</h2>
+						<div class="mt-2 space-y-2">
+							<Input
+								type="text"
+								placeholder="Title"
+								class="w-full rounded border px-2 py-1"
+								bind:value={title}
+							/>
+							<Textarea
+								placeholder="Description"
+								class="w-full rounded border px-2 py-1"
+								bind:value={description}
+							/>
+							<div class="flex space-x-2">
+								<DatePicker
+									passedClass={cn(
+										"flex-1 rounded border px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+									)}
+									bind:value={date}
 								/>
-								<Textarea
-									placeholder="Description"
-									class="w-full rounded border px-2 py-1"
-									bind:value={description}
+								<TimePicker
+									passedClass={cn(
+										"flex-1 rounded border px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+									)}
+									bind:selectedTime={time}
 								/>
-								<div class="flex space-x-2">
-									<DatePicker
-										passedClass={cn(
-											"flex-1 rounded border px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-										)}
-										bind:value={date}
-									/>
-									<TimePicker
-										passedClass={cn(
-											"flex-1 rounded border px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-										)}
-										bind:selectedTime={time}
-									/>
-								</div>
-							</div>
-							<div class="mt-4 flex space-x-2">
-								<Button onclick={cancelCreatingCountdown} class="bg-gray-400">
-									Cancel
-								</Button>
-								<Button onclick={createCountdown} class="bg-green-500">Save</Button>
 							</div>
 						</div>
-					{/if}
-					<Countdowns />
-				</div>
-			{/if}
+						<div class="mt-4 flex space-x-2">
+							<Button onclick={cancelCreatingCountdown} class="bg-gray-400">
+								Cancel
+							</Button>
+							<Button onclick={createCountdown} class="bg-green-500">Save</Button>
+						</div>
+					</div>
+				{/if}
+				<Countdowns />
+			</div>
 		</div>
 	</div>
 {/if}
