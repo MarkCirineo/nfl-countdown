@@ -9,8 +9,8 @@
 	const hours = Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, "0"));
 	const minutes = Array.from({ length: 60 }, (_, i) => i.toString().padStart(2, "0"));
 
-	let selectedHour = "00";
-	let selectedMinute = "00";
+	let selectedHour = selectedTime ? selectedTime.split(":")[0] : "00";
+	let selectedMinute = selectedTime ? selectedTime.split(":")[0] : "00";
 
 	const updateTime = () => {
 		selectedTime = `${selectedHour}:${selectedMinute}`;
