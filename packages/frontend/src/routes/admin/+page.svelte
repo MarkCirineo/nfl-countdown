@@ -139,7 +139,7 @@
 						</div>
 					</div>
 				{/if}
-				<Countdowns />
+				<Countdowns showAdminOptions={true} />
 			</div>
 		</div>
 	</div>

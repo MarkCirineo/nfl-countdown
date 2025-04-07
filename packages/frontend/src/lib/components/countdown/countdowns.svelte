@@ -8,10 +8,12 @@
 	onMount(async () => {
 		await getCountdowns();
 	});
+
+	const { showAdminOptions } = $props();
 </script>
 
 <ul class="space-y-4">
 	{#each countdownState.countdownData as countdown}
-		<Countdown {countdown} isAdmin={authState.user.role === "admin"} />
+		<Countdown {countdown} isAdmin={authState.user.role === "admin" && showAdminOptions} />
 	{/each}
 </ul>
