@@ -24,12 +24,8 @@
 	</div>
 {:else if authState.user.role !== "admin"}
 	<div class="overflow flex h-screen w-full flex-col items-center justify-center">
-		<div class="w-full max-w-4xl py-12">
-			<div class="text-center">
-				<Lock class="mx-auto mb-4 h-14 w-14 text-gray-400" />
-				<h2 class="text-xl font-bold">You do not have permission to access this page.</h2>
-			</div>
-		</div>
+		<Lock class="mx-auto mb-4 h-14 w-14 text-gray-400" />
+		<h2 class="text-xl font-bold">You do not have permission to access this page.</h2>
 	</div>
 {:else}
 	<div class="overflow flex h-screen w-full flex-col items-center justify-start">
