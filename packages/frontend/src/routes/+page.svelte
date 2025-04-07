@@ -3,7 +3,7 @@
 </script>
 
 <div class="overflow flex h-screen w-full flex-col items-center justify-start">
-	<div class="w-full max-w-3xl overflow-y-auto py-12">
+	<div class="w-full max-w-3xl overflow-y-auto py-16">
 		<Countdowns showAdminOptions={false} />
 	</div>
 </div>
