@@ -47,7 +47,7 @@
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
-	<Popover.Content class="w-auto rounded bg-black p-3 shadow-lg" align="start">
+	<Popover.Content class="w-auto rounded p-3 shadow-lg dark:bg-black" align="start">
 		<div class="flex">
 			<div
 				class="scrollbar-none flex h-40 w-20 flex-col overflow-y-auto rounded"
@@ -55,7 +55,7 @@
 			>
 				{#each [...hours, ...hours, ...hours] as hour}
 					<button
-						class="hover:bg-accent rounded px-4 py-2 text-sm text-white"
+						class="hover:bg-accent rounded px-4 py-2 text-sm dark:text-white"
 						on:click={() => {
 							selectedHour = hour;
 							updateTime();
@@ -71,7 +71,7 @@
 			>
 				{#each [...minutes, ...minutes, ...minutes] as minute}
 					<button
-						class="hover:bg-accent rounded px-4 py-2 text-sm text-white"
+						class="hover:bg-accent rounded px-4 py-2 text-sm dark:text-white"
 						on:click={() => {
 							selectedMinute = minute;
 							updateTime();
