@@ -4,7 +4,7 @@
 	import { ModeWatcher } from "mode-watcher";
 	import LightSwitch from "$lib/components/ui/light-switch/light-switch.svelte";
 	import LogOut from "$lib/components/ui/log-out/log-out.svelte";
-	import { getUser } from "$lib/stores/auth.svelte";
+	import { getUser, authState } from "$lib/stores/auth.svelte";
 
 	let { children } = $props();
 
@@ -16,7 +16,9 @@
 <ModeWatcher />
 
 <div class="options">
-	<LogOut />
+	{#if authState.user.username}
+		<LogOut />
+	{/if}
 	<LightSwitch />
 </div>
 
