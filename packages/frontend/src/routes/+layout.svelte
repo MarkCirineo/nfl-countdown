@@ -1,10 +1,10 @@
 <script lang="ts">
 	import "../app.css";
+	import { onMount } from "svelte";
 	import { ModeWatcher } from "mode-watcher";
 	import LightSwitch from "$lib/components/ui/light-switch/light-switch.svelte";
-
+	import LogOut from "$lib/components/ui/log-out/log-out.svelte";
 	import { getUser } from "$lib/stores/auth.svelte";
-	import { onMount } from "svelte";
 
 	let { children } = $props();
 
@@ -15,16 +15,19 @@
 
 <ModeWatcher />
 
-<div class="light-switch">
+<div class="options">
+	<LogOut />
 	<LightSwitch />
 </div>
 
 {@render children()}
 
 <style>
-	.light-switch {
+	.options {
 		position: fixed;
 		top: 1rem;
 		right: 1rem;
+		display: flex;
+		gap: 1rem;
 	}
 </style>
