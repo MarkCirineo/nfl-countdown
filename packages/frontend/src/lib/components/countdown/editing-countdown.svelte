@@ -8,6 +8,7 @@
 	import Button from "$lib/components/ui/button/button.svelte";
 
 	import { cn } from "$lib/utils";
+	import { request } from "$lib/request";
 	import type { CountdownData } from "$lib/types/countdown";
 	import { getCountdowns } from "$lib/stores/countdown.svelte";
 
@@ -38,7 +39,7 @@
 			return;
 		}
 
-		const response = await fetch("http://localhost:3000/api/countdown/update", {
+		const response = await request("/countdown/update", {
 			method: "PUT",
 			credentials: "include",
 			headers: {

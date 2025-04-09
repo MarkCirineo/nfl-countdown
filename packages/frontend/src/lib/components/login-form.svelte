@@ -6,13 +6,14 @@
 	import { Input } from "$lib/components/ui/input/index.js";
 	import { Label } from "$lib/components/ui/label/index.js";
 	import { setUser } from "$lib/stores/auth.svelte";
+	import { request } from "$lib/request.js";
 
 	let username = "";
 	let password = "";
 	let showPassword = false;
 
 	const handleLogin = async () => {
-		const response = await fetch("http://localhost:3000/api/auth/login", {
+		const response = await request("/auth/login", {
 			method: "POST",
 			credentials: "include",
 			headers: {

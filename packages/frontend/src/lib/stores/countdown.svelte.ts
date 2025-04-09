@@ -1,3 +1,4 @@
+import { request } from "$lib/request";
 import type { Countdown, CountdownData } from "$lib/types/countdown";
 import { calculateTimeLeft } from "$lib/utils";
 
@@ -33,7 +34,7 @@ export const sortCountdowns = () => {
 };
 
 export const getCountdowns = async (): Promise<Countdown[]> => {
-	const response = await fetch("http://localhost:3000/api/countdown/list", {
+	const response = await request("/countdown/list", {
 		method: "GET",
 		credentials: "include",
 		headers: {

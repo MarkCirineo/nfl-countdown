@@ -1,3 +1,5 @@
+import { request } from "$lib/request";
+
 type AuthState = {
 	user: {
 		username: string;
@@ -17,7 +19,7 @@ export const authState = $state<AuthState>({
 export const getUser = async () => {
 	authState.loading = true;
 
-	const res = await fetch("http://localhost:3000/api/auth/me", {
+	const res = await request("/auth/me", {
 		method: "GET",
 		credentials: "include",
 		headers: {

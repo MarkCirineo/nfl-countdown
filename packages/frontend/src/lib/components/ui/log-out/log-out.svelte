@@ -1,9 +1,10 @@
 <script lang="ts">
 	import LogOut from "@lucide/svelte/icons/log-out";
 	import { Button } from "$lib/components/ui/button/index.js";
+	import { request } from "$lib/request.js";
 
 	const logOut = async () => {
-		const response = await fetch("http://localhost:3000/api/auth/logout", {
+		const response = await request("/auth/logout", {
 			method: "POST",
 			credentials: "include",
 			headers: {

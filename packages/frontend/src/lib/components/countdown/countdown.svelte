@@ -5,6 +5,7 @@
 
 	import type { CountdownData } from "$lib/types/countdown";
 	import { calculateTimeLeft, cn } from "$lib/utils";
+	import { request } from "$lib/request";
 	import { getCountdowns } from "$lib/stores/countdown.svelte";
 	import EditingCountdown from "./editing-countdown.svelte";
 
@@ -13,7 +14,7 @@
 	let editing = $state(false);
 
 	const deleteCountdown = async (id: number) => {
-		const response = await fetch("http://localhost:3000/api/countdown/delete", {
+		const response = await request("/countdown/delete", {
 			method: "DELETE",
 			credentials: "include",
 			headers: {

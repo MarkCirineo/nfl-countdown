@@ -8,6 +8,7 @@
 	import Button from "$lib/components/ui/button/button.svelte";
 
 	import { cn } from "$lib/utils";
+	import { request } from "$lib/request";
 	import { getCountdowns } from "$lib/stores/countdown.svelte";
 
 	export let isCreating: boolean = false;
@@ -39,7 +40,7 @@
 			return;
 		}
 
-		const response = await fetch("http://localhost:3000/api/countdown/create", {
+		const response = await request("/countdown/create", {
 			method: "POST",
 			credentials: "include",
 			headers: {
