@@ -39,6 +39,8 @@
 			return;
 		}
 
+		const ISODate = new Date(parsedDate).toISOString();
+
 		const response = await request("/countdown/update", {
 			method: "PUT",
 			credentials: "include",
@@ -47,7 +49,7 @@
 			},
 			body: JSON.stringify({
 				id: countdown.id,
-				date: dateAndTime,
+				date: ISODate,
 				title,
 				description
 			})
