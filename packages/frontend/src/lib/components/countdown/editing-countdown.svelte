@@ -1,4 +1,5 @@
 <script lang="ts">
+	import moment from "moment";
 	import { parseDate, type DateValue } from "@internationalized/date";
 
 	import Textarea from "$lib/components/ui/textarea/textarea.svelte";
@@ -15,8 +16,11 @@
 	let { countdown, editing = $bindable() }: { countdown: CountdownData; editing: boolean } =
 		$props();
 
-	let date: DateValue | undefined = $state(parseDate(countdown.date.split("T")[0]));
-	let time = $state(countdown.date.split("T")[1].slice(0, 5));
+	const currentDate = moment(countdown.date).format("YYYY-MM-DD");
+	const currentTime = moment(countdown.date).format("HH:mm");
+
+	let date: DateValue | undefined = $state(parseDate(currentDate));
+	let time = $state(currentTime);
 	let title = $state(countdown.title);
 	let description = $state(countdown.description);
 
