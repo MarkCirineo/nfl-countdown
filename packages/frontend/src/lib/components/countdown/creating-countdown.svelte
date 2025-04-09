@@ -40,6 +40,8 @@
 			return;
 		}
 
+		const ISODate = new Date(parsedDate).toISOString();
+
 		const response = await request("/countdown/create", {
 			method: "POST",
 			credentials: "include",
@@ -47,7 +49,7 @@
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				date: dateAndTime,
+				date: ISODate,
 				title,
 				description
 			})
