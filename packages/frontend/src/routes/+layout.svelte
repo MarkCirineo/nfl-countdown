@@ -5,7 +5,7 @@
 	import LightSwitch from "$lib/components/ui/light-switch/light-switch.svelte";
 	import LogOut from "$lib/components/ui/log-out/log-out.svelte";
 	import { getUser, authState } from "$lib/stores/auth.svelte";
-	import { env } from "$env/dynamic/public";
+	import { PUBLIC_ADSENSE_ID } from "$env/static/public";
 
 	let { children } = $props();
 
@@ -17,7 +17,7 @@
 <svelte:head>
 	<script
 		async
-		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={env.PUBLIC_ADSENSE_ID}"
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={PUBLIC_ADSENSE_ID}"
 		crossorigin="anonymous"
 	></script>
 </svelte:head>
